@@ -1,5 +1,5 @@
 ---
-name: Maëlle  Salmon
+title: Maëlle  Salmon
 honorific: Dr.
 categories:
 - France

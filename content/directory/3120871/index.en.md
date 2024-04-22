@@ -1,5 +1,5 @@
 ---
-name: Jane Doe
+title: Jane Doe
 location: {}
 social_media: {}
 activities: {}

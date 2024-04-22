@@ -1,5 +1,5 @@
 ---
-name: Yara Doe
+title: Yara Doe
 honorific: MD
 location:
   city: Stockholm

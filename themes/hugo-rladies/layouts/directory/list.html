@@ -1,0 +1,67 @@
+{{ define "main" }}
+  <div class="entry-content">
+		{{ .Content }}
+	</div>
+	
+    
+  <div class="container expand-grid" id="directory-cards">
+    <ul class="justify-content-center row row-xl-2 row-lg-3 row-md-4 row-sm-6 row-9 full-width shuffle-wrapper" id="directory-grid">
+      {{ range .Pages | shuffle }}
+          {{ partial "funcs/directory/card.html" (dict "data" . "size" "large") }}
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
+	
+	
+	
+{{ define  "footer" }}
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    $('[id^="filter-"]').multiselect({
+      includeSelectAllOption: true,
+      maxHeight: 300,
+      enableFiltering: true,
+      enableClickableOptGroups: true,
+      enableCollapsibleOptGroups: true
+    });
+    $('.form-check-input').attr('name', 'shuffle-filter');
+    
+    // Attach event listeners to the multiselect change event
+    $('[id^="filter-"]').on('change', applyFilters);
+
+    // Select the container for shuffle items
+    const shuffleContainer = document.getElementById('directory-grid');
+
+    // Initialize Shuffle.js
+    const shuffleInstance = new Shuffle(shuffleContainer, {
+      itemSelector: '.shuffle-item',
+      buffer: 1,
+      isCentered: true
+    });
+
+    // Function to apply filters
+    function applyFilters() {
+      // Get selected values from multiselects || Default to empty array if no values selected
+      const interests = $('#filter-interests').val() || []; 
+      const languages = $('#filter-languages').val() || [];
+      const locations = $('#filter-location').val() || [];
+        
+      // Use Shuffle.js filter method
+      shuffleInstance.filter(item => {
+        const itemInterests = JSON.parse(item.getAttribute('data-interests'));
+        const itemLanguages = JSON.parse(item.getAttribute('data-languages'));
+        const itemLocations = JSON.parse(item.getAttribute('data-location'));
+    
+        // Check if item passes the selected filters
+        return (
+          (interests.length === 0 || interests.some(i => itemInterests.includes(i))) &&
+          (languages.length === 0 || languages.some(l => itemLanguages.includes(l))) &&
+          (locations.length === 0 || locations.some(loc => itemLocations.includes(loc)))
+        );
+      });
+    }
+  });
+</script>
+{{ end }}

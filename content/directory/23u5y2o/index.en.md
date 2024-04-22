@@ -1,5 +1,5 @@
 ---
-name: Athanasia Mo Mowinckel
+title: Athanasia Mo Mowinckel
 honorific: PhD
 categories:
 - Speaker

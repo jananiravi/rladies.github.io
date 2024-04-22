@@ -1,5 +1,5 @@
 ---
-name: Jane Doe
+title: Jane Doe
 location:
   city: New Dehli
   country: India
