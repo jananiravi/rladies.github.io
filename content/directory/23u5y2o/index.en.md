@@ -43,3 +43,10 @@ photo:
   url: 23u5y2o.png
   credit: Tron Tronsdal
 ---
+
+This is some text about me.
+
+lorem ipsum dolor sit amet consectetur adipiscing elit. Donec auctor, nunc nec
+vulputate, nunc nunc ultricies nunc, nec ultricies nunc nunc nec nunc. Nunc
+nunc nunc nec nunc. Nunc nunc nunc nunc nunc nunc nunc nunc nunc nunc nunc nunc
+

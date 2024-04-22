@@ -8,12 +8,12 @@
 {{ end }}
 {{ $dir.Add "title" "</small></span>"}}
 
-{{ $dir.Set "subtitle" (printf "<p class=\"text-hide directory-id\">%s</p>" .name) }} 
+{{ $dir.Set "subtitle" (printf "<p class=\"text-hide directory-id\">%s</p>" .slug) }} 
 {{ with .data.Params.work.title }} 
   {{ $dir.Add "subtitle" . }} 
 {{ end }}
 
-{{ $grav := md5 ( .data.Params.name | printf "%s-%s" .name ) }}
+{{ $grav := md5 ( .data.Title | printf "%s-%s" .slug ) }}
 {{ $dir.Set "img" (printf "https://www.gravatar.com/avatar/%s?s=100&d=identicon" $grav )}}
 {{ with ( .data.Resources.Get .data.Params.photo.url ) }}
   {{ $image :=  . }}
@@ -33,30 +33,15 @@
 {{ end }}
 {{ $languages := dict "languages" ($dir.Get "languages") }}
 
-
 {{ $location := dict "location" "" }}
-{{ with .data.Params.location }}
-  {{ $tmp := newScratch }}
-  {{ with .country }}
-    {{ $tmp.Set "loc" . }}
-  {{ end }}
-  
-  {{ with .state }}
-    {{ $tmp.Add "loc" ( . | printf ", %s") }}
-  {{ end }}
-  
-  {{ with .city }}
-    {{ $tmp.Add "loc" ( . | printf ", %s") }}
-  {{ end }}
-  {{ $dir.Add "location" ($tmp.Get "loc")}}
-  {{ $location := dict "location" . }}
-{{ end }}
+{{ $dir.Add "location" (partial "funcs/directory/location.html" .data.Params.location) }}
+{{ $dir.Set "location" ($dir.Get "location" | slice ) }}
 {{ $location := dict "location" ($dir.Get "location" | slice ) }}
 
-{{ $descr := partial "funcs/directory/descr.html" (dict "data" .data "id" .name ) }}
+{{ $descr := partial "funcs/directory/descr.html" (dict "data" .data "id" .slug ) }}
 {{ $subtitle := ($dir.Get "subtitle" ) }}
 {{ $title := ($dir.Get "title" ) }}
 {{ $foot := (partial "funcs/directory/foot.html" .data ) }}
 {{ $shuffle := merge $interests $languages $location }}
 
-{{ partial "funcs/card-expand.html" (dict "title" $title "subtitle" $subtitle "size" .size  "img" ($dir.Get "img") "category" .data.Params.honorific "descr" $descr "foot" $foot "footcol" 2 "id" .name  "shuffle" $shuffle "link" .data.Permalink) }}
+{{ partial "funcs/card-expand.html" (dict "title" $title "subtitle" $subtitle "size" .size  "img" ($dir.Get "img") "category" .data.Params.honorific "descr" $descr "foot" $foot "footcol" 2 "id" .data.Slug  "shuffle" $shuffle "link" .data.Permalink) }}

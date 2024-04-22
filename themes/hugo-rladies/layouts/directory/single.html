@@ -1,0 +1,31 @@
+
+{{ define "main" }}
+{{ $tmp := newScratch }}
+
+<div class="entry-content">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {{ $grav := md5 ( .Title | printf "%s-%s" .Slug ) }}
+        {{ $tmp.Set "img" (printf "https://www.gravatar.com/avatar/%s?s=100&d=identicon" $grav )}}
+        {{ with ( .Resources.Get .Params.photo.url ) }}
+          {{ $image :=  . }}
+          {{ $image := $image.Fill "500x500" }}
+          {{ $tmp.Set "img" $image.RelPermalink }}
+        {{ end }}
+        
+        <img src="{{ $tmp.Get "img" }}" class="img-fluid rounded-circle" alt="{{ .Title }} {{with .Params.photo.credit}} - credit {{.}} {{end}}">
+      </div>
+      <div class="col align-middle"  style="font-size: 0.9em;">
+    	  {{ $descr := partial "funcs/directory/descr.html" (dict "data" . "id" .Slug ) }}
+  	    {{ $descr | safeHTML }}
+      </div>
+  
+    </div>
+  </div>
+
+  <div class="pt-4">
+	{{ .Content }}
+	</div>
+</div>
+{{ end }}
