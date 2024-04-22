@@ -40,6 +40,6 @@ work:
   department: Center for Lifespan Changes in Brain and Cognition, Dept. of Psychology
   url: https://www.oslobrains.no/
 photo:
-  url: directory/23u5y2o.png
+  url: 23u5y2o.png
   credit: Tron Tronsdal
 ---

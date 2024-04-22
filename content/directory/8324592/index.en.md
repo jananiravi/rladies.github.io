@@ -26,5 +26,5 @@ activities: {}
 work:
   title: Data scientist
 photo:
-  url: directory/8324592.png
+  url: 8324592.png
 ---
