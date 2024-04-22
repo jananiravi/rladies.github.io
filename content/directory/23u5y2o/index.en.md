@@ -20,7 +20,7 @@ interests:
 - Data Visualisation
 - Cognitive Psychology
 - -{}()dkih 08ijeq´ ø.¨q@lpie
-contact_method: Twitter
+contact_method: [Twitter]
 activities:
   r_groups:
   - name: R-Ladies Oslo

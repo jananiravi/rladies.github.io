@@ -18,7 +18,7 @@ interests:
 - epidemiology
 - Public Health
 - R Blogging
-contact_method: Twitter
+contact_method: [Twitter]
 languages:
 - English
 - French
